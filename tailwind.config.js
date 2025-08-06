@@ -18,6 +18,68 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Custom color palette
+        gunmetal: { 
+          DEFAULT: '#2d3142', 
+          100: '#090a0d', 
+          200: '#12141b', 
+          300: '#1b1e28', 
+          400: '#242735', 
+          500: '#2d3142', 
+          600: '#4e5472', 
+          700: '#71799e', 
+          800: '#a0a6bf', 
+          900: '#d0d2df' 
+        },
+        white: { 
+          DEFAULT: '#ffffff', 
+          100: '#333333', 
+          200: '#666666', 
+          300: '#999999', 
+          400: '#cccccc', 
+          500: '#ffffff', 
+          600: '#ffffff', 
+          700: '#ffffff', 
+          800: '#ffffff', 
+          900: '#ffffff' 
+        },
+        coral: { 
+          DEFAULT: '#ef8354', 
+          100: '#3b1505', 
+          200: '#762b0b', 
+          300: '#b04010', 
+          400: '#e95718', 
+          500: '#ef8354', 
+          600: '#f29a75', 
+          700: '#f5b497', 
+          800: '#f9cdba', 
+          900: '#fce6dc' 
+        },
+        "payne-gray": { 
+          DEFAULT: '#4f5d75', 
+          100: '#101217', 
+          200: '#1f252e', 
+          300: '#2f3745', 
+          400: '#3f4a5c', 
+          500: '#4f5d75', 
+          600: '#687a99', 
+          700: '#8e9bb2', 
+          800: '#b4bdcc', 
+          900: '#d9dee5' 
+        },
+        "battleship-gray": { 
+          DEFAULT: '#76877d', 
+          100: '#181b19', 
+          200: '#2f3732', 
+          300: '#47524c', 
+          400: '#5f6d65', 
+          500: '#76877d', 
+          600: '#92a098', 
+          700: '#adb8b2', 
+          800: '#c8d0cb', 
+          900: '#e4e7e5' 
+        },
+        // ShadCN UI colors (keeping for component compatibility)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
