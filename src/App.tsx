@@ -4,7 +4,7 @@ import { Badge } from './components/ui/badge';
 import { Separator } from './components/ui/separator';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from './components/ui/navigation-menu';
 import { ArrowRight, Globe } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 // Custom components
 import { FeatureCard } from './components/FeatureCard';
