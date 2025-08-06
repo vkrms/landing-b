@@ -1,12 +1,30 @@
 import './App.css';
 import { Button } from './components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card';
 import { Badge } from './components/ui/badge';
 import { Separator } from './components/ui/separator';
-import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from './components/ui/navigation-menu';
-import { Shield, BarChart3, ArrowRight, Globe, Zap, Lock } from 'lucide-react';
+import { ArrowRight, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// Custom components
+import { FeatureCard } from './components/FeatureCard';
+import { HowItWorksCard } from './components/HowItWorksCard';
+import { BlogPostCard } from './components/BlogPostCard';
+import { FooterSection } from './components/FooterSection';
+import { SectionHeader } from './components/SectionHeader';
+import { AnimatedButton } from './components/AnimatedButton';
+
+// Data
+import {
+  siteConfig,
+  navigation,
+  heroContent,
+  howItWorksContent,
+  keyFeaturesContent,
+  ctaContent,
+  blogContent,
+  footerContent,
+} from './data/content';
 
 function App() {
   return (
@@ -25,25 +43,17 @@ function App() {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <Globe className="h-6 w-6 text-coral" />
-            <span className="text-xl font-bold text-gunmetal">Eventflo</span>
+            <span className="text-xl font-bold text-gunmetal">{siteConfig.name}</span>
           </motion.div>
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} text-gunmetal hover:text-coral transition-colors`}>
-                  Home
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} text-gunmetal hover:text-coral transition-colors`}>
-                  Features
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} text-gunmetal hover:text-coral transition-colors`}>
-                  Blog
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              {navigation.map((item, index) => (
+                <NavigationMenuItem key={index}>
+                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} text-gunmetal hover:text-coral transition-colors`}>
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
               <NavigationMenuItem>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -67,7 +77,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Badge variant="secondary" className="mb-4 bg-coral-100 text-coral-700 hover:bg-coral-200">
-              Revolutionary Event Platform
+              {heroContent.badge}
             </Badge>
           </motion.div>
           <motion.h1 
@@ -76,7 +86,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl md:text-6xl font-bold mb-6 text-gunmetal"
           >
-            Eventflo: Pioneering a new era in events
+            {heroContent.title}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
@@ -84,20 +94,16 @@ function App() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-xl text-payne-gray mb-8 max-w-3xl mx-auto"
           >
-            Reshaping the industry through blockchain and AI to put power back in the hands of organizers and fans.
+            {heroContent.description}
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <AnimatedButton
+            size="lg"
+            className="text-lg px-8 py-6 bg-coral hover:bg-coral-600 text-white shadow-lg"
+            icon={ArrowRight}
+            delay={0.8}
           >
-            <Button size="lg" className="text-lg px-8 py-6 bg-coral hover:bg-coral-600 text-white shadow-lg">
-              Try Eventflo Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </motion.div>
+            {heroContent.primaryCTA}
+          </AnimatedButton>
         </div>
       </section>
 
@@ -106,61 +112,22 @@ function App() {
       {/* How It Works Section */}
       <section className="py-20 bg-battleship-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gunmetal">How It Works</h2>
-            <p className="text-xl text-payne-gray max-w-2xl mx-auto">
-              Explain how Eventflo utilizes blockchain and AI to empower event organizers and fans.
-            </p>
-          </motion.div>
+          <SectionHeader 
+            title={howItWorksContent.title}
+            description={howItWorksContent.description}
+          />
           <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <Card className="h-full bg-white shadow-lg border-payne-gray-200 hover:shadow-xl transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Shield className="h-6 w-6 text-coral" />
-                    <CardTitle className="text-gunmetal">Blockchain Technology</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-payne-gray">
-                    Secure, transparent, and decentralized event management powered by blockchain technology.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <Card className="h-full bg-white shadow-lg border-payne-gray-200 hover:shadow-xl transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Zap className="h-6 w-6 text-coral" />
-                    <CardTitle className="text-gunmetal">AI-Powered Insights</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-payne-gray">
-                    Advanced analytics and AI-driven recommendations for optimal event planning and execution.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            {howItWorksContent.features.map((feature, index) => (
+              <HowItWorksCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                iconColor={feature.iconColor}
+                delay={0.2 + index * 0.2}
+                direction={index === 0 ? 'left' : 'right'}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -170,100 +137,23 @@ function App() {
       {/* Feature Sections */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gunmetal">Key Features</h2>
-            <p className="text-xl text-payne-gray">
-              Discover what makes Eventflo the future of event management
-            </p>
-          </motion.div>
+          <SectionHeader 
+            title={keyFeaturesContent.title}
+            description={keyFeaturesContent.description}
+          />
           
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1: Decentralized Event Management */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-coral-200">
-                <CardHeader>
-                  <motion.div 
-                    className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-coral text-white"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Globe className="h-6 w-6" />
-                  </motion.div>
-                  <CardTitle className="text-gunmetal">Decentralized Event Management</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-payne-gray">
-                    Take control of your events with our decentralized platform that puts organizers first.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Feature 2: AI-Driven Analytics */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
-                <CardHeader>
-                  <motion.div 
-                    className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-payne-gray text-white"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <BarChart3 className="h-6 w-6" />
-                  </motion.div>
-                  <CardTitle className="text-gunmetal">AI-Driven Analytics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-payne-gray">
-                    Enhanced event planning with intelligent insights and predictive analytics.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Feature 3: Secure Transactions */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-battleship-gray-200">
-                <CardHeader>
-                  <motion.div 
-                    className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-battleship-gray text-white"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Lock className="h-6 w-6" />
-                  </motion.div>
-                  <CardTitle className="text-gunmetal">Secure & Transparent Transactions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-payne-gray">
-                    Blockchain-powered security ensures every transaction is safe and transparent.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            {keyFeaturesContent.features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                iconColor={feature.iconColor}
+                borderColor={feature.borderColor}
+                delay={0.1 + index * 0.1}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -281,7 +171,7 @@ function App() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            Ready to revolutionize your events?
+            {ctaContent.title}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
@@ -290,7 +180,7 @@ function App() {
             viewport={{ once: true }}
             className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
           >
-            Join thousands of organizers who are already using Eventflo to create amazing experiences.
+            {ctaContent.description}
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -304,7 +194,7 @@ function App() {
               whileTap={{ scale: 0.95 }}
             >
               <Button size="lg" className="text-lg px-8 py-6 bg-white text-coral hover:bg-gray-100 shadow-lg">
-                Start Your Free Trial
+                {ctaContent.primaryButton}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
@@ -313,7 +203,7 @@ function App() {
               whileTap={{ scale: 0.95 }}
             >
               <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-coral">
-                Schedule Demo
+                {ctaContent.secondaryButton}
               </Button>
             </motion.div>
           </motion.div>
@@ -325,121 +215,19 @@ function App() {
       {/* Blog List Section */}
       <section className="py-20 bg-battleship-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gunmetal">Latest Insights</h2>
-            <p className="text-xl text-payne-gray">
-              Curated resources and articles that provide value to event organizers and attendees.
-            </p>
-          </motion.div>
+          <SectionHeader 
+            title={blogContent.title}
+            description={blogContent.description}
+          />
           
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Blog Post 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
-              <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
-                <CardHeader>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Badge variant="secondary" className="bg-coral-100 text-coral-700">Event Planning</Badge>
-                    <span className="text-sm text-payne-gray">5 min read</span>
-                  </div>
-                  <CardTitle className="text-gunmetal">10 Tips for Successful Event Planning in 2024</CardTitle>
-                  <CardDescription className="text-payne-gray">
-                    Learn the latest strategies and best practices for organizing memorable events.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center space-x-2">
-                    <Avatar className="h-8 w-8 border-2 border-coral">
-                      <AvatarImage src="/avatars/01.png" />
-                      <AvatarFallback className="bg-coral text-white">JD</AvatarFallback>
-                    </Avatar>
-                    <div className="text-sm">
-                      <p className="font-medium text-gunmetal">John Doe</p>
-                      <p className="text-payne-gray">Event Specialist</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Blog Post 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
-              <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
-                <CardHeader>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Badge variant="secondary" className="bg-payne-gray-100 text-payne-gray-700">Technology</Badge>
-                    <span className="text-sm text-payne-gray">8 min read</span>
-                  </div>
-                  <CardTitle className="text-gunmetal">How Blockchain is Transforming Event Management</CardTitle>
-                  <CardDescription className="text-payne-gray">
-                    Discover the revolutionary impact of blockchain technology on the events industry.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center space-x-2">
-                    <Avatar className="h-8 w-8 border-2 border-payne-gray">
-                      <AvatarImage src="/avatars/02.png" />
-                      <AvatarFallback className="bg-payne-gray text-white">JS</AvatarFallback>
-                    </Avatar>
-                    <div className="text-sm">
-                      <p className="font-medium text-gunmetal">Jane Smith</p>
-                      <p className="text-payne-gray">Tech Writer</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Blog Post 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
-              <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
-                <CardHeader>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Badge variant="secondary" className="bg-battleship-gray-100 text-battleship-gray-700">Analytics</Badge>
-                    <span className="text-sm text-payne-gray">6 min read</span>
-                  </div>
-                  <CardTitle className="text-gunmetal">AI-Powered Event Analytics: A Complete Guide</CardTitle>
-                  <CardDescription className="text-payne-gray">
-                    Master the art of data-driven event planning with AI analytics.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center space-x-2">
-                    <Avatar className="h-8 w-8 border-2 border-battleship-gray">
-                      <AvatarImage src="/avatars/03.png" />
-                      <AvatarFallback className="bg-battleship-gray text-white">MJ</AvatarFallback>
-                    </Avatar>
-                    <div className="text-sm">
-                      <p className="font-medium text-gunmetal">Mike Johnson</p>
-                      <p className="text-payne-gray">Data Analyst</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+            {blogContent.posts.map((post, index) => (
+              <BlogPostCard
+                key={post.id}
+                post={post}
+                delay={0.1 + index * 0.1}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -456,57 +244,20 @@ function App() {
             >
               <div className="flex items-center space-x-2 mb-4">
                 <Globe className="h-6 w-6 text-coral" />
-                <span className="text-xl font-bold">Eventflo</span>
+                <span className="text-xl font-bold">{siteConfig.name}</span>
               </div>
               <p className="text-white/80">
-                Pioneering a new era in events through blockchain and AI technology.
+                {siteConfig.description}
               </p>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="font-semibold mb-4 text-coral">Product</h3>
-              <ul className="space-y-2 text-white/80">
-                <li><a href="#" className="hover:text-coral transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">API</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Documentation</a></li>
-              </ul>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="font-semibold mb-4 text-coral">Company</h3>
-              <ul className="space-y-2 text-white/80">
-                <li><a href="#" className="hover:text-coral transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Contact</a></li>
-              </ul>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="font-semibold mb-4 text-coral">Support</h3>
-              <ul className="space-y-2 text-white/80">
-                <li><a href="#" className="hover:text-coral transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Community</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Status</a></li>
-                <li><a href="#" className="hover:text-coral transition-colors">Security</a></li>
-              </ul>
-            </motion.div>
+            {footerContent.sections.map((section, index) => (
+              <FooterSection
+                key={index}
+                section={section}
+                delay={0.1 + index * 0.1}
+              />
+            ))}
           </div>
           
           <Separator className="my-8 border-payne-gray-600" />
@@ -519,12 +270,14 @@ function App() {
             className="flex flex-col md:flex-row justify-between items-center"
           >
             <p className="text-white/60 text-sm">
-              © 2024 Eventflo. All rights reserved.
+              {footerContent.copyright}
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <a href="#" className="text-white/60 hover:text-coral transition-colors">Privacy</a>
-              <a href="#" className="text-white/60 hover:text-coral transition-colors">Terms</a>
-              <a href="#" className="text-white/60 hover:text-coral transition-colors">Cookies</a>
+              {footerContent.bottomLinks.map((link, index) => (
+                <a key={index} href={link.href} className="text-white/60 hover:text-coral transition-colors">
+                  {link.label}
+                </a>
+              ))}
             </div>
           </motion.div>
         </div>
