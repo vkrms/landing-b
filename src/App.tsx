@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-battleship-gray-100">
+    <div className="min-h-screen bg-white">
       {/* Navbar */}
       <motion.nav 
         initial={{ opacity: 0, y: -20 }}
@@ -59,7 +59,7 @@ function App() {
 
       {/* Hero Section */}
       <section className="py-20 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-coral-100 to-payne-gray-100 opacity-30"></div>
+        <div className="absolute inset-0 bg-coral-50 opacity-30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -93,7 +93,7 @@ function App() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-coral to-coral-600 hover:from-coral-600 hover:to-coral-700 text-white shadow-lg">
+            <Button size="lg" className="text-lg px-8 py-6 bg-coral hover:bg-coral-600 text-white shadow-lg">
               Try Eventflo Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -104,7 +104,7 @@ function App() {
       <Separator className="border-payne-gray-200" />
 
       {/* How It Works Section */}
-      <section className="py-20 bg-gradient-to-r from-battleship-gray-50 to-payne-gray-50">
+      <section className="py-20 bg-battleship-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -192,7 +192,7 @@ function App() {
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <Card className="text-center h-full bg-gradient-to-br from-white to-coral-50 shadow-lg hover:shadow-xl transition-all duration-300 border-coral-200">
+              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-coral-200">
                 <CardHeader>
                   <motion.div 
                     className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-coral text-white"
@@ -219,7 +219,7 @@ function App() {
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <Card className="text-center h-full bg-gradient-to-br from-white to-payne-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
+              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-payne-gray-200">
                 <CardHeader>
                   <motion.div 
                     className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-payne-gray text-white"
@@ -246,7 +246,7 @@ function App() {
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <Card className="text-center h-full bg-gradient-to-br from-white to-battleship-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 border-battleship-gray-200">
+              <Card className="text-center h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-battleship-gray-200">
                 <CardHeader>
                   <motion.div 
                     className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-battleship-gray text-white"
@@ -271,7 +271,7 @@ function App() {
       <Separator className="border-payne-gray-200" />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-coral to-payne-gray relative overflow-hidden">
+      <section className="py-20 bg-coral relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.h2 
@@ -323,7 +323,7 @@ function App() {
       <Separator className="border-payne-gray-200" />
 
       {/* Blog List Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-battleship-gray-50">
+      <section className="py-20 bg-battleship-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
