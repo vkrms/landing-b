@@ -7,22 +7,22 @@ const features = [
   {
     icon: Zap,
     title: "Lightning Fast",
-    description: "Experience blazing fast performance with our optimized platform that delivers results in milliseconds."
+    description: "Vite provides instant server start and lightning-fast hot module replacement for the best development experience."
   },
   {
     icon: Users,
-    title: "Team Collaboration",
-    description: "Work seamlessly with your team using our intuitive collaboration tools and real-time updates."
+    title: "Component-Based",
+    description: "React's component architecture allows you to build encapsulated components that manage their own state."
   },
   {
     icon: CheckCircle,
-    title: "Reliable & Secure",
-    description: "Built with enterprise-grade security and 99.9% uptime to keep your data safe and accessible."
+    title: "Modern Tooling",
+    description: "Get the latest ES modules, TypeScript support, and optimized builds out of the box with Vite + React."
   },
   {
     icon: Star,
-    title: "Premium Support",
-    description: "Get expert help when you need it with our dedicated support team available 24/7."
+    title: "Rich Ecosystem",
+    description: "Access thousands of React packages and Vite plugins to extend your application's capabilities."
   }
 ]
 
@@ -38,10 +38,10 @@ export function Features() {
           className="text-left mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gunmetal mb-4">
-            Why Choose Our Platform?
+            Why Choose Vite + React?
           </h2>
           <p className="text-lg text-payne-gray max-w-2xl">
-            We've built everything you need to succeed, with powerful features designed to streamline your workflow and boost productivity.
+            The perfect combination of React's powerful component system and Vite's blazing-fast development experience.
           </p>
         </motion.div>
 

@@ -14,10 +14,10 @@ export function CTA() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Ready to Transform Your Workflow?
+            Ready to Learn More?
           </h2>
           <p className="text-xl text-gunmetal-800 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who have already revolutionized their productivity with our platform.
+            Explore the documentation and community resources to master Vite and React development.
           </p>
         </motion.div>
         
@@ -31,15 +31,17 @@ export function CTA() {
           <Button 
             size="lg" 
             className="bg-coral hover:bg-coral-400 text-white px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105"
+            onClick={() => window.open('https://vitejs.dev', '_blank')}
           >
-            Start Free Trial
+            Vite Documentation
           </Button>
           <Button 
             variant="outline" 
             size="lg"
             className="border-2 border-white text-white hover:bg-white hover:text-gunmetal px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105"
+            onClick={() => window.open('https://react.dev', '_blank')}
           >
-            Contact Sales
+            React Documentation
           </Button>
         </motion.div>
         
@@ -50,7 +52,7 @@ export function CTA() {
           viewport={{ once: true }}
           className="text-sm text-gunmetal-800 mt-8"
         >
-          No credit card required • 14-day free trial • Cancel anytime
+          Fast development • Modern tooling • Great developer experience
         </motion.p>
       </div>
     </section>
