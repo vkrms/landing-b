@@ -1,0 +1,1 @@
+- Optimal session lenght is around 15 min
